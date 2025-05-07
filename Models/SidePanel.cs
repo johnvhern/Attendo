@@ -55,5 +55,11 @@ namespace Attendo.Models
             mainForm.OpenForm(new Screens.Reports());
             ColorActiveButton((Button)sender);
         }
+
+        private void btnQR_Click(object sender, EventArgs e)
+        {
+            mainForm.OpenForm(new Screens.QRGenerator());
+            ColorActiveButton((Button)sender);
+        }
     }
 }

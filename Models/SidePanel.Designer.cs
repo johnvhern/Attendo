@@ -32,14 +32,15 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnSessions = new System.Windows.Forms.Button();
             this.btnStudents = new System.Windows.Forms.Button();
             this.btnReports = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnQR = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -53,8 +54,9 @@
             this.flowLayoutPanel1.Controls.Add(this.btnDashboard);
             this.flowLayoutPanel1.Controls.Add(this.btnSessions);
             this.flowLayoutPanel1.Controls.Add(this.btnStudents);
-            this.flowLayoutPanel1.Controls.Add(this.btnReports);
+            this.flowLayoutPanel1.Controls.Add(this.btnQR);
             this.flowLayoutPanel1.Controls.Add(this.btnLogout);
+            this.flowLayoutPanel1.Controls.Add(this.btnReports);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -86,19 +88,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(225, 54);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 27);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ATTENDO";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -111,6 +100,19 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "QR Attendance System";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Montserrat SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(219, 27);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ATTENDO";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -177,7 +179,7 @@
             this.btnReports.Font = new System.Drawing.Font("Montserrat SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReports.ForeColor = System.Drawing.Color.White;
             this.btnReports.Image = ((System.Drawing.Image)(resources.GetObject("btnReports.Image")));
-            this.btnReports.Location = new System.Drawing.Point(3, 399);
+            this.btnReports.Location = new System.Drawing.Point(3, 515);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(225, 52);
             this.btnReports.TabIndex = 6;
@@ -200,6 +202,22 @@
             this.btnLogout.Text = "    Logout    ";
             this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLogout.UseVisualStyleBackColor = true;
+            // 
+            // btnQR
+            // 
+            this.btnQR.FlatAppearance.BorderSize = 0;
+            this.btnQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQR.Font = new System.Drawing.Font("Montserrat SemiBold", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQR.ForeColor = System.Drawing.Color.White;
+            this.btnQR.Image = ((System.Drawing.Image)(resources.GetObject("btnQR.Image")));
+            this.btnQR.Location = new System.Drawing.Point(3, 399);
+            this.btnQR.Name = "btnQR";
+            this.btnQR.Size = new System.Drawing.Size(225, 52);
+            this.btnQR.TabIndex = 8;
+            this.btnQR.Text = "    QR Code    ";
+            this.btnQR.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnQR.UseVisualStyleBackColor = true;
+            this.btnQR.Click += new System.EventHandler(this.btnQR_Click);
             // 
             // SidePanel
             // 
@@ -231,5 +249,6 @@
         private System.Windows.Forms.Button btnStudents;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnQR;
     }
 }

@@ -10,6 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using QRCoder;
 
 
 namespace Attendo.Screens
@@ -51,6 +52,16 @@ namespace Attendo.Screens
             }
         }
 
+        public Bitmap GenerateQRCode(string content)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);
+
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            return qrCodeImage;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -73,6 +84,12 @@ namespace Attendo.Screens
                 {
                     MessageBox.Show("Name is required.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtCourse.Focus();
+                    return;
+                }
+
+                if (picID.Image.Equals(null))
+                {
+                    MessageBox.Show("Please upload a photo.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -101,6 +118,18 @@ namespace Attendo.Screens
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }
+
+                string qrContent = studentID + "|" + name + "|" + course;
+                Bitmap qrBitmap = GenerateQRCode(qrContent);
+
+                // Save QR to disk
+                string qrPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR", studentID + ".png");
+                if (!Directory.Exists(Path.GetDirectoryName(qrPath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(qrPath));
+                }
+                qrBitmap.Save(qrPath, System.Drawing.Imaging.ImageFormat.Png);
+
 
                 loadAllBoarders();
                 MessageBox.Show("Student added successfully!");
@@ -142,6 +171,7 @@ namespace Attendo.Screens
                     txtStudentID.Text = lastName;
                     txtName.Text = name;
                     picID.Image = Image.FromFile(row.Cells["photopath"].Value.ToString());
+                    picQR.Image = Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR", lastName + ".png"));
                 }
             }
             catch (Exception ex)
@@ -165,6 +195,72 @@ namespace Attendo.Screens
             picID.Image = null;
             selectedImagePath = "";
             selectedStudentID = -1;
+            picQR.Image = null;
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            string studentID = txtStudentID.Text.Trim();
+            string studentName = txtName.Text.Trim();
+            string course = txtCourse.Text.Trim();
+
+            var preview = new IDPreviewForm(studentID, studentName, course);
+            preview.ShowDialog();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (selectedStudentID >= 0)
+                {
+                    string course = txtCourse.Text;
+                    string studentID = txtStudentID.Text;
+                    string name = txtName.Text;
+
+                    string photoDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos");
+                    if (!Directory.Exists(photoDir)) Directory.CreateDirectory(photoDir);
+
+                    string newPhotoPath = Path.Combine(photoDir, studentID + Path.GetExtension(selectedImagePath));
+
+                    File.Copy(selectedImagePath, newPhotoPath, true);
+
+                    using (SqlConnection conn = new SqlConnection(dbConnection))
+                    {
+                        conn.Open();
+                        string updateBoarder = "UPDATE tblStudents SET course = @course, student_id = @studentid, student_name = @name, photopath = @photopath WHERE id = @id";
+                        using (SqlCommand cmd = new SqlCommand(updateBoarder, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@course", course);
+                            cmd.Parameters.AddWithValue("@studentid", studentID);
+                            cmd.Parameters.AddWithValue("@name", name);
+                            cmd.Parameters.AddWithValue("@id", selectedStudentID);
+                            cmd.Parameters.AddWithValue("@photopath", newPhotoPath);
+
+
+                            int rowsAffected = cmd.ExecuteNonQuery();
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Student updated successfully.");
+                                loadAllBoarders();
+                                btnClear_Click(sender, e);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Failed to update Student.");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No student selected for update.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 }
