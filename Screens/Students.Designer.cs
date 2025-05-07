@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtSearchBox = new MetroFramework.Controls.MetroTextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.picID = new System.Windows.Forms.PictureBox();
             this.btnUpload = new System.Windows.Forms.Button();
@@ -49,6 +48,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPrint = new System.Windows.Forms.Button();
             this.picQR = new System.Windows.Forms.PictureBox();
+            this.txtSearchBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picID)).BeginInit();
@@ -66,23 +66,23 @@
             this.dgvStudents.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStudents.Location = new System.Drawing.Point(0, 0);
             this.dgvStudents.Name = "dgvStudents";
@@ -101,15 +101,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1920, 795);
             this.panel2.TabIndex = 8;
-            // 
-            // txtSearchBox
-            // 
-            this.txtSearchBox.FontSize = MetroFramework.MetroTextBoxSize.Medium;
-            this.txtSearchBox.Location = new System.Drawing.Point(14, 202);
-            this.txtSearchBox.Name = "txtSearchBox";
-            this.txtSearchBox.PromptText = "Search...";
-            this.txtSearchBox.Size = new System.Drawing.Size(159, 27);
-            this.txtSearchBox.TabIndex = 39;
             // 
             // btnUpdate
             // 
@@ -273,9 +264,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtSearchBox);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.picQR);
-            this.panel1.Controls.Add(this.txtSearchBox);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.picID);
             this.panel1.Controls.Add(this.btnUpload);
@@ -318,6 +309,18 @@
             this.picQR.TabIndex = 40;
             this.picQR.TabStop = false;
             // 
+            // txtSearchBox
+            // 
+            this.txtSearchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchBox.Location = new System.Drawing.Point(15, 201);
+            this.txtSearchBox.Name = "txtSearchBox";
+            this.txtSearchBox.Size = new System.Drawing.Size(204, 25);
+            this.txtSearchBox.TabIndex = 42;
+            this.txtSearchBox.TextChanged += new System.EventHandler(this.txtSearchBox_TextChanged);
+            this.txtSearchBox.Enter += new System.EventHandler(this.txtSearchBox_Enter);
+            this.txtSearchBox.Leave += new System.EventHandler(this.txtSearchBox_Leave);
+            // 
             // Students
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,7 +349,6 @@
 
         private System.Windows.Forms.DataGridView dgvStudents;
         private System.Windows.Forms.Panel panel2;
-        private MetroFramework.Controls.MetroTextBox txtSearchBox;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.PictureBox picID;
         private System.Windows.Forms.Button btnUpload;
@@ -363,5 +365,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.PictureBox picQR;
+        private System.Windows.Forms.TextBox txtSearchBox;
     }
 }

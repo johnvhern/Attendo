@@ -11,6 +11,7 @@ using System.Security.Policy;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using QRCoder;
+using System.Windows.Controls;
 
 
 namespace Attendo.Screens
@@ -133,6 +134,7 @@ namespace Attendo.Screens
 
                 loadAllBoarders();
                 MessageBox.Show("Student added successfully!");
+                btnClear_Click(sender, e);
             }
             catch (Exception ex)
             {
@@ -151,7 +153,7 @@ namespace Attendo.Screens
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     selectedImagePath = dialog.FileName;
-                    picID.Image = Image.FromFile(dialog.FileName);
+                    picID.Image = System.Drawing.Image.FromFile(dialog.FileName);
                 }
             }
         }
@@ -170,8 +172,8 @@ namespace Attendo.Screens
                     txtCourse.Text = course;
                     txtStudentID.Text = lastName;
                     txtName.Text = name;
-                    picID.Image = Image.FromFile(row.Cells["photopath"].Value.ToString());
-                    picQR.Image = Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR", lastName + ".png"));
+                    picID.Image = System.Drawing.Image.FromFile(row.Cells["photopath"].Value.ToString());
+                    picQR.Image = System.Drawing.Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR", lastName + ".png"));
                 }
             }
             catch (Exception ex)
@@ -183,7 +185,12 @@ namespace Attendo.Screens
 
         private void Students_Load(object sender, EventArgs e)
         {
+            
+            dgvStudents.ClearSelection();
+            txtSearchBox.Text = "Search...";
+            txtSearchBox.ForeColor = Color.Gray;
             loadAllBoarders();
+
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -261,6 +268,33 @@ namespace Attendo.Screens
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void txtSearchBox_Enter(object sender, EventArgs e)
+        {
+            if (txtSearchBox.Text == "Search...")
+            {
+                txtSearchBox.Text = "";
+                txtSearchBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtSearchBox_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSearchBox.Text))
+            {
+                txtSearchBox.Text = "Search...";
+                txtSearchBox.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtSearchBox_TextChanged(object sender, EventArgs e)
+        {
+            if (txtSearchBox.Text == "Search...") return;
+
+            string filterText = txtSearchBox.Text.Trim().Replace("'", "''"); // avoid SQL issues
+            (dgvStudents.DataSource as DataTable).DefaultView.RowFilter =
+                $"student_name LIKE '%{filterText}%' OR student_id LIKE '%{filterText}%' OR course LIKE '%{filterText}%'";
         }
     }
 }
