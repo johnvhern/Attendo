@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Attendo.Screens
@@ -107,10 +108,14 @@ namespace Attendo.Screens
 
             foreach (DataGridViewRow row in dgvStudents.SelectedRows)
             {
+                
                 string studentID = row.Cells["student_id"].Value.ToString();
+                string name = row.Cells["student_name"].Value.ToString();
+                string course = row.Cells["course"].Value.ToString();
+                string qrContent = studentID + "|" + name + "|" + course;
                 string path = Path.Combine("QR", studentID + ".png");
 
-                QRCodeGeneratorUtil.GenerateQRCode(studentID, path);
+                QRCodeGeneratorUtil.GenerateQRCode(qrContent, path);
             }
 
             MessageBox.Show("QR code(s) generated for selected student(s).");
@@ -121,9 +126,12 @@ namespace Attendo.Screens
             foreach (DataGridViewRow row in dgvStudents.Rows)
             {
                 string studentID = row.Cells["student_id"].Value.ToString();
+                string name = row.Cells["student_name"].Value.ToString();
+                string course = row.Cells["course"].Value.ToString();
+                string qrContent = studentID + "|" + name + "|" + course;
                 string path = Path.Combine("QR", studentID + ".png");
 
-                QRCodeGeneratorUtil.GenerateQRCode(studentID, path);
+                QRCodeGeneratorUtil.GenerateQRCode(qrContent, path);
             }
 
             MessageBox.Show("QR code(s) generated for all filtered students.");
