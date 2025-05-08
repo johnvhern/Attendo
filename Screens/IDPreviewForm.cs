@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
@@ -17,6 +19,7 @@ namespace Attendo.Screens
 {
     public partial class IDPreviewForm : Form
     {
+        private string dbConnection = "Data Source=localhost\\sqlexpress;Initial Catalog=Attendo;Integrated Security=True;";
         private Bitmap idBitmap;
         private PrintDocument printDocument;
         public IDPreviewForm(string studentID, string name, string course)
@@ -109,9 +112,25 @@ namespace Attendo.Screens
 
         private void DrawIDCard(Graphics g, Rectangle bounds, string studentID, string studentName, string course)
         {
+            string photoRelativePath = ""; // this comes from the database
+            using (SqlConnection conn = new SqlConnection(dbConnection))
+            {
+                conn.Open();
+                string query = "SELECT photopath FROM tblStudents WHERE student_id = @id";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", studentID);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        photoRelativePath = result.ToString();
+                    }
+                }
+            }
+
             string schoolName = "Garcia College of Technology";
 
-            string photoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos", studentID + ".jpg");
+            string photoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, photoRelativePath);
             string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "favicon.png");
             string qrPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR", studentID + ".png");
 
@@ -131,7 +150,11 @@ namespace Attendo.Screens
             StringFormat centerFormat = new StringFormat { Alignment = StringAlignment.Center };
 
             g.FillRectangle(Brushes.White, bounds);
-            g.DrawRectangle(Pens.Black, bounds);
+            using (Pen borderPen = new Pen(Color.Black, 2)) // Change color and thickness as needed
+            {
+                g.DrawRectangle(borderPen, bounds);
+            }
+
 
             if (File.Exists(logoPath))
             {
@@ -144,7 +167,18 @@ namespace Attendo.Screens
             if (File.Exists(photoPath))
             {
                 Image photo = Image.FromFile(photoPath);
-                g.DrawImage(photo, centerX - 60, cardY + 110, 120, 120);
+
+                int photoWidth = 120;
+                int photoHeight = 120;
+                int photoX = centerX - (photoWidth / 2);
+                int photoY = cardY + 110;
+
+                // Draw the photo
+                g.DrawImage(photo, photoX, photoY, photoWidth, photoHeight);
+
+                // Draw a black border
+                Pen borderPen = new Pen(Color.Black, 1); // 2px border
+                g.DrawRectangle(borderPen, photoX, photoY, photoWidth, photoHeight);
             }
 
             int textY = cardY + 240;

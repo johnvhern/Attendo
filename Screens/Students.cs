@@ -172,15 +172,33 @@ namespace Attendo.Screens
                     txtCourse.Text = course;
                     txtStudentID.Text = lastName;
                     txtName.Text = name;
-                    picID.Image = System.Drawing.Image.FromFile(row.Cells["photopath"].Value.ToString());
-                    picQR.Image = System.Drawing.Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR", lastName + ".png"));
+
+                    // Load and dispose the original photo
+                    string photoPath = row.Cells["photopath"].Value.ToString();
+                    if (File.Exists(photoPath))
+                    {
+                        using (var img = System.Drawing.Image.FromFile(photoPath))
+                        {
+                            picID.Image = new Bitmap(img); // clone the image
+                        }
+                    }
+
+                    // Load and dispose the QR code
+                    string qrPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR", lastName + ".png");
+                    if (File.Exists(qrPath))
+                    {
+                        using (var qr = System.Drawing.Image.FromFile(qrPath))
+                        {
+                            picQR.Image = new Bitmap(qr); // clone the image
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show("Error: " + ex.Message);
             }
+
         }
 
         private void Students_Load(object sender, EventArgs e)
@@ -221,6 +239,12 @@ namespace Attendo.Screens
             {
                 if (selectedStudentID >= 0)
                 {
+                    if (string.IsNullOrEmpty(selectedImagePath))
+                    {
+                        MessageBox.Show("Please select an image before updating.");
+                        return;
+                    }
+
                     string course = txtCourse.Text;
                     string studentID = txtStudentID.Text;
                     string name = txtName.Text;
@@ -228,22 +252,44 @@ namespace Attendo.Screens
                     string photoDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos");
                     if (!Directory.Exists(photoDir)) Directory.CreateDirectory(photoDir);
 
-                    string newPhotoPath = Path.Combine(photoDir, studentID + Path.GetExtension(selectedImagePath));
-
-                    File.Copy(selectedImagePath, newPhotoPath, true);
+                    string newPhotoExtension = Path.GetExtension(selectedImagePath);
+                    string newPhotoPath = Path.Combine(photoDir, studentID + newPhotoExtension);
 
                     using (SqlConnection conn = new SqlConnection(dbConnection))
                     {
                         conn.Open();
+
+                        // 1. Get old photo path from database
+                        string selectQuery = "SELECT photopath FROM tblStudents WHERE id = @id";
+                        string oldPhotoPath = null;
+                        using (SqlCommand selectCmd = new SqlCommand(selectQuery, conn))
+                        {
+                            selectCmd.Parameters.AddWithValue("@id", selectedStudentID);
+                            object result = selectCmd.ExecuteScalar();
+                            if (result != DBNull.Value && result != null)
+                            {
+                                oldPhotoPath = result.ToString();
+                            }
+                        }
+
+                        // 2. Delete old photo if it exists and is different from the new path
+                        if (!string.IsNullOrEmpty(oldPhotoPath) && File.Exists(oldPhotoPath) && oldPhotoPath != newPhotoPath)
+                        {
+                            File.Delete(oldPhotoPath);
+                        }
+
+                        // 3. Copy the new photo
+                        File.Copy(selectedImagePath, newPhotoPath, true);
+
+                        // 4. Update database
                         string updateBoarder = "UPDATE tblStudents SET course = @course, student_id = @studentid, student_name = @name, photopath = @photopath WHERE id = @id";
                         using (SqlCommand cmd = new SqlCommand(updateBoarder, conn))
                         {
                             cmd.Parameters.AddWithValue("@course", course);
                             cmd.Parameters.AddWithValue("@studentid", studentID);
                             cmd.Parameters.AddWithValue("@name", name);
-                            cmd.Parameters.AddWithValue("@id", selectedStudentID);
                             cmd.Parameters.AddWithValue("@photopath", newPhotoPath);
-
+                            cmd.Parameters.AddWithValue("@id", selectedStudentID);
 
                             int rowsAffected = cmd.ExecuteNonQuery();
                             if (rowsAffected > 0)
