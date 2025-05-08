@@ -296,9 +296,41 @@ namespace Attendo.Screens
                             int rowsAffected = cmd.ExecuteNonQuery();
                             if (rowsAffected > 0)
                             {
+                                string qrContent = studentID + "|" + name + "|" + course;
+                                Bitmap qrBitmap = GenerateQRCode(qrContent);
+
+                                // Define path to save QR
+                                string qrDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "QR");
+                                string qrPath = Path.Combine(qrDir, studentID + ".png");
+
+                                // Ensure the directory exists
+                                if (!Directory.Exists(qrDir))
+                                {
+                                    Directory.CreateDirectory(qrDir);
+                                }
+
+                                // If a QR code image already exists, delete it
+                                if (File.Exists(qrPath))
+                                {
+                                    try
+                                    {
+                                        File.Delete(qrPath);
+                                    }
+                                    catch (IOException ex)
+                                    {
+                                        MessageBox.Show("Error deleting old QR: " + ex.Message);
+                                        return; // Optional: skip saving if you want to avoid overwriting issues
+                                    }
+                                }
+
+                                // Save the new QR image
+                                qrBitmap.Save(qrPath, System.Drawing.Imaging.ImageFormat.Png);
+                                qrBitmap.Dispose(); // Dispose bitmap to release file handle
+
                                 MessageBox.Show("Student updated successfully.");
                                 loadAllBoarders();
                                 btnClear_Click(sender, e);
+
                             }
                             else
                             {

@@ -34,7 +34,7 @@ namespace Attendo.Screens
                     dgvSessions.Columns["sessionname"].HeaderText = "Session Name";
                     dgvSessions.Columns["starttime"].HeaderText = "Start Time";
                     dgvSessions.Columns["cutofftime"].HeaderText = "Cutoff Time";
-                    dgvSessions.Columns["isactive"].HeaderText = "Is Active";
+                    dgvSessions.Columns["isactive"].HeaderText = "Active";
               
                 }
             }
