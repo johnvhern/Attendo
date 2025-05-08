@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,12 +52,15 @@
             this.picID = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.scannTimer = new System.Windows.Forms.Timer(this.components);
+            this.btnResetInput = new System.Windows.Forms.Button();
+            this.flowRecentScans = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picID)).BeginInit();
@@ -64,12 +69,14 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.11459F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.88542F));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.0625F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.833333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.05208F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtScanInput, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtScanInput, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnResetInput, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -110,11 +117,12 @@
             this.txtScanInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtScanInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtScanInput.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtScanInput.Location = new System.Drawing.Point(1521, 43);
+            this.txtScanInput.Location = new System.Drawing.Point(1633, 43);
             this.txtScanInput.Name = "txtScanInput";
-            this.txtScanInput.Size = new System.Drawing.Size(396, 29);
+            this.txtScanInput.Size = new System.Drawing.Size(284, 29);
             this.txtScanInput.TabIndex = 10;
             this.txtScanInput.TextChanged += new System.EventHandler(this.txtScanInput_TextChanged);
+            this.txtScanInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScanInput_KeyPress);
             // 
             // panel3
             // 
@@ -158,14 +166,37 @@
             // 
             this.dgvAttendanceLog.AllowUserToAddRows = false;
             this.dgvAttendanceLog.AllowUserToDeleteRows = false;
+            this.dgvAttendanceLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAttendanceLog.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvAttendanceLog.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAttendanceLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvAttendanceLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAttendanceLog.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvAttendanceLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAttendanceLog.Location = new System.Drawing.Point(3, 351);
+            this.dgvAttendanceLog.MultiSelect = false;
             this.dgvAttendanceLog.Name = "dgvAttendanceLog";
             this.dgvAttendanceLog.ReadOnly = true;
+            this.dgvAttendanceLog.RowHeadersVisible = false;
+            this.dgvAttendanceLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAttendanceLog.Size = new System.Drawing.Size(1134, 643);
             this.dgvAttendanceLog.TabIndex = 0;
+            this.dgvAttendanceLog.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAttendanceLog_CellFormatting);
+            this.dgvAttendanceLog.SelectionChanged += new System.EventHandler(this.dgvAttendanceLog_SelectionChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -251,6 +282,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.flowRecentScans);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(1522, 0);
             this.panel2.Name = "panel2";
@@ -310,6 +342,32 @@
             this.scannTimer.Interval = 300;
             this.scannTimer.Tick += new System.EventHandler(this.scannTimer_Tick);
             // 
+            // btnResetInput
+            // 
+            this.btnResetInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
+            this.btnResetInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnResetInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetInput.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetInput.ForeColor = System.Drawing.Color.White;
+            this.btnResetInput.Location = new System.Drawing.Point(1521, 43);
+            this.btnResetInput.Name = "btnResetInput";
+            this.btnResetInput.Size = new System.Drawing.Size(106, 35);
+            this.btnResetInput.TabIndex = 11;
+            this.btnResetInput.Text = "Reset Input";
+            this.btnResetInput.UseVisualStyleBackColor = false;
+            this.btnResetInput.Click += new System.EventHandler(this.btnResetInput_Click);
+            // 
+            // flowRecentScans
+            // 
+            this.flowRecentScans.AutoScroll = true;
+            this.flowRecentScans.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowRecentScans.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowRecentScans.Location = new System.Drawing.Point(0, 0);
+            this.flowRecentScans.Name = "flowRecentScans";
+            this.flowRecentScans.Size = new System.Drawing.Size(396, 997);
+            this.flowRecentScans.TabIndex = 0;
+            this.flowRecentScans.WrapContents = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,6 +387,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendanceLog)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picID)).EndInit();
@@ -359,5 +418,7 @@
         private System.Windows.Forms.Label lblstudentNumber;
         private System.Windows.Forms.TextBox txtScanInput;
         private System.Windows.Forms.Timer scannTimer;
+        private System.Windows.Forms.Button btnResetInput;
+        private System.Windows.Forms.FlowLayoutPanel flowRecentScans;
     }
 }
