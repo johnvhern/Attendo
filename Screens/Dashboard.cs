@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.TextFormatting;
 
 namespace Attendo.Screens
 {
@@ -32,6 +33,20 @@ namespace Attendo.Screens
             else
             {
                 label2.Text = "No active session.";
+            }
+
+            txtScanInput.TabStop = false;
+            txtScanInput.Focus();
+        }
+
+        private void txtScanInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                string scannedData = txtScanInput.Text.Trim();
+                MessageBox.Show("Scanned Data: " + scannedData);  // For debugging
+                txtScanInput.Clear();
+                //ProcessScan(scannedData);
             }
         }
     }
