@@ -121,7 +121,7 @@ namespace Attendo.Screens
                     con.Close();
                 }
 
-                string qrContent = studentID + "|" + name + "|" + course;
+                string qrContent = studentID;
                 Bitmap qrBitmap = GenerateQRCode(qrContent);
 
                 // Save QR to disk
@@ -296,7 +296,7 @@ namespace Attendo.Screens
                             int rowsAffected = cmd.ExecuteNonQuery();
                             if (rowsAffected > 0)
                             {
-                                string qrContent = studentID + "|" + name + "|" + course;
+                                string qrContent = studentID;
                                 Bitmap qrBitmap = GenerateQRCode(qrContent);
 
                                 // Define path to save QR
