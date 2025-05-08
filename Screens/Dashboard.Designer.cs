@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,16 +39,17 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvAttendanceLog = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.studentStatus = new System.Windows.Forms.Label();
-            this.dateTime = new System.Windows.Forms.Label();
-            this.studentCourse = new System.Windows.Forms.Label();
-            this.studentName = new System.Windows.Forms.Label();
-            this.studentNumber = new System.Windows.Forms.Label();
+            this.lblstudentStatus = new System.Windows.Forms.Label();
+            this.lbldateTime = new System.Windows.Forms.Label();
+            this.lblstudentCourse = new System.Windows.Forms.Label();
+            this.lblstudentName = new System.Windows.Forms.Label();
+            this.lblstudentNumber = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.picID = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.scannTimer = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -107,12 +109,12 @@
             // 
             this.txtScanInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtScanInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtScanInput.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtScanInput.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtScanInput.Location = new System.Drawing.Point(1521, 43);
             this.txtScanInput.Name = "txtScanInput";
-            this.txtScanInput.Size = new System.Drawing.Size(396, 33);
+            this.txtScanInput.Size = new System.Drawing.Size(396, 29);
             this.txtScanInput.TabIndex = 10;
-            this.txtScanInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtScanInput_KeyDown);
+            this.txtScanInput.TextChanged += new System.EventHandler(this.txtScanInput_TextChanged);
             // 
             // panel3
             // 
@@ -170,11 +172,11 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Controls.Add(this.studentStatus, 0, 4);
-            this.tableLayoutPanel4.Controls.Add(this.dateTime, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.studentCourse, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.studentName, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.studentNumber, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lblstudentStatus, 0, 4);
+            this.tableLayoutPanel4.Controls.Add(this.lbldateTime, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.lblstudentCourse, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.lblstudentName, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lblstudentNumber, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -187,70 +189,65 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1134, 342);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
-            // studentStatus
+            // lblstudentStatus
             // 
-            this.studentStatus.AutoSize = true;
-            this.studentStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studentStatus.ForeColor = System.Drawing.Color.White;
-            this.studentStatus.Location = new System.Drawing.Point(3, 272);
-            this.studentStatus.Name = "studentStatus";
-            this.studentStatus.Size = new System.Drawing.Size(1128, 70);
-            this.studentStatus.TabIndex = 4;
-            this.studentStatus.Text = "IN";
-            this.studentStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblstudentStatus.AutoSize = true;
+            this.lblstudentStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblstudentStatus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblstudentStatus.ForeColor = System.Drawing.Color.White;
+            this.lblstudentStatus.Location = new System.Drawing.Point(3, 272);
+            this.lblstudentStatus.Name = "lblstudentStatus";
+            this.lblstudentStatus.Size = new System.Drawing.Size(1128, 70);
+            this.lblstudentStatus.TabIndex = 4;
+            this.lblstudentStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dateTime
+            // lbldateTime
             // 
-            this.dateTime.AutoSize = true;
-            this.dateTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateTime.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTime.ForeColor = System.Drawing.Color.White;
-            this.dateTime.Location = new System.Drawing.Point(3, 204);
-            this.dateTime.Name = "dateTime";
-            this.dateTime.Size = new System.Drawing.Size(1128, 68);
-            this.dateTime.TabIndex = 3;
-            this.dateTime.Text = "TODAY IS SATURDAY, MAY 8, 2025 5:00 PM";
-            this.dateTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbldateTime.AutoSize = true;
+            this.lbldateTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbldateTime.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbldateTime.ForeColor = System.Drawing.Color.White;
+            this.lbldateTime.Location = new System.Drawing.Point(3, 204);
+            this.lbldateTime.Name = "lbldateTime";
+            this.lbldateTime.Size = new System.Drawing.Size(1128, 68);
+            this.lbldateTime.TabIndex = 3;
+            this.lbldateTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // studentCourse
+            // lblstudentCourse
             // 
-            this.studentCourse.AutoSize = true;
-            this.studentCourse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentCourse.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studentCourse.ForeColor = System.Drawing.Color.White;
-            this.studentCourse.Location = new System.Drawing.Point(3, 136);
-            this.studentCourse.Name = "studentCourse";
-            this.studentCourse.Size = new System.Drawing.Size(1128, 68);
-            this.studentCourse.TabIndex = 2;
-            this.studentCourse.Text = "BSIT 4";
-            this.studentCourse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblstudentCourse.AutoSize = true;
+            this.lblstudentCourse.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblstudentCourse.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblstudentCourse.ForeColor = System.Drawing.Color.White;
+            this.lblstudentCourse.Location = new System.Drawing.Point(3, 136);
+            this.lblstudentCourse.Name = "lblstudentCourse";
+            this.lblstudentCourse.Size = new System.Drawing.Size(1128, 68);
+            this.lblstudentCourse.TabIndex = 2;
+            this.lblstudentCourse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // studentName
+            // lblstudentName
             // 
-            this.studentName.AutoSize = true;
-            this.studentName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentName.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studentName.ForeColor = System.Drawing.Color.White;
-            this.studentName.Location = new System.Drawing.Point(3, 68);
-            this.studentName.Name = "studentName";
-            this.studentName.Size = new System.Drawing.Size(1128, 68);
-            this.studentName.TabIndex = 1;
-            this.studentName.Text = "John Vhern Millor T. Dela Cruz";
-            this.studentName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblstudentName.AutoSize = true;
+            this.lblstudentName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblstudentName.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblstudentName.ForeColor = System.Drawing.Color.White;
+            this.lblstudentName.Location = new System.Drawing.Point(3, 68);
+            this.lblstudentName.Name = "lblstudentName";
+            this.lblstudentName.Size = new System.Drawing.Size(1128, 68);
+            this.lblstudentName.TabIndex = 1;
+            this.lblstudentName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // studentNumber
+            // lblstudentNumber
             // 
-            this.studentNumber.AutoSize = true;
-            this.studentNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.studentNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studentNumber.ForeColor = System.Drawing.Color.White;
-            this.studentNumber.Location = new System.Drawing.Point(3, 0);
-            this.studentNumber.Name = "studentNumber";
-            this.studentNumber.Size = new System.Drawing.Size(1128, 68);
-            this.studentNumber.TabIndex = 0;
-            this.studentNumber.Text = "020002170918";
-            this.studentNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblstudentNumber.AutoSize = true;
+            this.lblstudentNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblstudentNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblstudentNumber.ForeColor = System.Drawing.Color.White;
+            this.lblstudentNumber.Location = new System.Drawing.Point(3, 0);
+            this.lblstudentNumber.Name = "lblstudentNumber";
+            this.lblstudentNumber.Size = new System.Drawing.Size(1128, 68);
+            this.lblstudentNumber.TabIndex = 0;
+            this.lblstudentNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -308,6 +305,11 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
+            // scannTimer
+            // 
+            this.scannTimer.Interval = 300;
+            this.scannTimer.Tick += new System.EventHandler(this.scannTimer_Tick);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -350,11 +352,12 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.DataGridView dgvAttendanceLog;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label studentStatus;
-        private System.Windows.Forms.Label dateTime;
-        private System.Windows.Forms.Label studentCourse;
-        private System.Windows.Forms.Label studentName;
-        private System.Windows.Forms.Label studentNumber;
+        private System.Windows.Forms.Label lblstudentStatus;
+        private System.Windows.Forms.Label lbldateTime;
+        private System.Windows.Forms.Label lblstudentCourse;
+        private System.Windows.Forms.Label lblstudentName;
+        private System.Windows.Forms.Label lblstudentNumber;
         private System.Windows.Forms.TextBox txtScanInput;
+        private System.Windows.Forms.Timer scannTimer;
     }
 }

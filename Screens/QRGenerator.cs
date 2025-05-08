@@ -112,7 +112,7 @@ namespace Attendo.Screens
                 string studentID = row.Cells["student_id"].Value.ToString();
                 string name = row.Cells["student_name"].Value.ToString();
                 string course = row.Cells["course"].Value.ToString();
-                string qrContent = studentID;
+                string qrContent = studentID + '|' + name + '|' + course;
                 string path = Path.Combine("QR", studentID + ".png");
 
                 QRCodeGeneratorUtil.GenerateQRCode(qrContent, path);
@@ -128,7 +128,7 @@ namespace Attendo.Screens
                 string studentID = row.Cells["student_id"].Value.ToString();
                 string name = row.Cells["student_name"].Value.ToString();
                 string course = row.Cells["course"].Value.ToString();
-                string qrContent = studentID;
+                string qrContent = studentID + '|' + name + '|' + course;
                 string path = Path.Combine("QR", studentID + ".png");
 
                 QRCodeGeneratorUtil.GenerateQRCode(qrContent, path);
