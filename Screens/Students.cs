@@ -45,6 +45,7 @@ namespace Attendo.Screens
                     dgvStudents.Columns["student_id"].HeaderText = "Student ID";
                     dgvStudents.Columns["student_name"].HeaderText = "Name";
                     dgvStudents.Columns["photopath"].Visible = false;
+                    
                 }
             }
             catch (Exception ex)
@@ -204,10 +205,11 @@ namespace Attendo.Screens
         private void Students_Load(object sender, EventArgs e)
         {
             
-            dgvStudents.ClearSelection();
+            
             txtSearchBox.Text = "Search...";
             txtSearchBox.ForeColor = Color.Gray;
             loadAllBoarders();
+            dgvStudents.ClearSelection();
 
         }
 

@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnGenerateAllQR = new System.Windows.Forms.Button();
+            this.btnSelectedQR = new System.Windows.Forms.Button();
             this.txtSearchBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbCourseFilter = new MetroFramework.Controls.MetroComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
-            this.btnSelectedQR = new System.Windows.Forms.Button();
-            this.btnGenerateAllQR = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudents)).BeginInit();
@@ -87,6 +88,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1920, 210);
             this.panel2.TabIndex = 9;
+            // 
+            // btnGenerateAllQR
+            // 
+            this.btnGenerateAllQR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
+            this.btnGenerateAllQR.FlatAppearance.BorderSize = 0;
+            this.btnGenerateAllQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateAllQR.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateAllQR.ForeColor = System.Drawing.Color.White;
+            this.btnGenerateAllQR.Location = new System.Drawing.Point(182, 156);
+            this.btnGenerateAllQR.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGenerateAllQR.Name = "btnGenerateAllQR";
+            this.btnGenerateAllQR.Size = new System.Drawing.Size(158, 40);
+            this.btnGenerateAllQR.TabIndex = 16;
+            this.btnGenerateAllQR.Text = "Generate QR (All)";
+            this.btnGenerateAllQR.UseVisualStyleBackColor = false;
+            this.btnGenerateAllQR.Click += new System.EventHandler(this.btnGenerateAllQR_Click);
+            // 
+            // btnSelectedQR
+            // 
+            this.btnSelectedQR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
+            this.btnSelectedQR.FlatAppearance.BorderSize = 0;
+            this.btnSelectedQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectedQR.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectedQR.ForeColor = System.Drawing.Color.White;
+            this.btnSelectedQR.Location = new System.Drawing.Point(15, 156);
+            this.btnSelectedQR.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelectedQR.Name = "btnSelectedQR";
+            this.btnSelectedQR.Size = new System.Drawing.Size(158, 40);
+            this.btnSelectedQR.TabIndex = 15;
+            this.btnSelectedQR.Text = "Generate QR (Selected)";
+            this.btnSelectedQR.UseVisualStyleBackColor = false;
+            this.btnSelectedQR.Click += new System.EventHandler(this.btnSelectedQR_Click);
             // 
             // txtSearchBox
             // 
@@ -144,22 +177,30 @@
             // 
             this.dgvStudents.AllowUserToAddRows = false;
             this.dgvStudents.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            this.dgvStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgvStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStudents.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvStudents.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStudents.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvStudents.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStudents.Location = new System.Drawing.Point(0, 259);
             this.dgvStudents.Margin = new System.Windows.Forms.Padding(2);
@@ -170,38 +211,6 @@
             this.dgvStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStudents.Size = new System.Drawing.Size(1920, 821);
             this.dgvStudents.TabIndex = 10;
-            // 
-            // btnSelectedQR
-            // 
-            this.btnSelectedQR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
-            this.btnSelectedQR.FlatAppearance.BorderSize = 0;
-            this.btnSelectedQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectedQR.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectedQR.ForeColor = System.Drawing.Color.White;
-            this.btnSelectedQR.Location = new System.Drawing.Point(15, 156);
-            this.btnSelectedQR.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSelectedQR.Name = "btnSelectedQR";
-            this.btnSelectedQR.Size = new System.Drawing.Size(158, 40);
-            this.btnSelectedQR.TabIndex = 15;
-            this.btnSelectedQR.Text = "Generate QR (Selected)";
-            this.btnSelectedQR.UseVisualStyleBackColor = false;
-            this.btnSelectedQR.Click += new System.EventHandler(this.btnSelectedQR_Click);
-            // 
-            // btnGenerateAllQR
-            // 
-            this.btnGenerateAllQR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
-            this.btnGenerateAllQR.FlatAppearance.BorderSize = 0;
-            this.btnGenerateAllQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerateAllQR.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateAllQR.ForeColor = System.Drawing.Color.White;
-            this.btnGenerateAllQR.Location = new System.Drawing.Point(182, 156);
-            this.btnGenerateAllQR.Margin = new System.Windows.Forms.Padding(2);
-            this.btnGenerateAllQR.Name = "btnGenerateAllQR";
-            this.btnGenerateAllQR.Size = new System.Drawing.Size(158, 40);
-            this.btnGenerateAllQR.TabIndex = 16;
-            this.btnGenerateAllQR.Text = "Generate QR (All)";
-            this.btnGenerateAllQR.UseVisualStyleBackColor = false;
-            this.btnGenerateAllQR.Click += new System.EventHandler(this.btnGenerateAllQR_Click);
             // 
             // QRGenerator
             // 

@@ -67,6 +67,9 @@ namespace Attendo.Screens
                             adapter.Fill(dt);
                         }
                         dgvStudents.DataSource = dt;
+                        dgvStudents.Columns["course"].HeaderText = "Course";
+                        dgvStudents.Columns["student_id"].HeaderText = "Student ID";
+                        dgvStudents.Columns["student_name"].HeaderText = "Name";
                     }
                 }
             }
