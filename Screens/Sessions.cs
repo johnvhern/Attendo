@@ -35,7 +35,10 @@ namespace Attendo.Screens
                     dgvSessions.Columns["starttime"].HeaderText = "Start Time";
                     dgvSessions.Columns["cutofftime"].HeaderText = "Cutoff Time";
                     dgvSessions.Columns["isactive"].HeaderText = "Active";
-              
+
+                    dgvSessions.Columns["starttime"].DefaultCellStyle.Format = "MMM dd, yyyy hh:mm:ss tt";
+                    dgvSessions.Columns["cutofftime"].DefaultCellStyle.Format = "MMM dd, yyyy hh:mm:ss tt";
+
                 }
             }
         }

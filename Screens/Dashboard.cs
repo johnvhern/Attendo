@@ -29,7 +29,7 @@ namespace Attendo.Screens
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            lbldateTime.Text = "Today is " + DateTime.Now.ToString("dddd, MMMM dd, yyyy hh:mm tt");
+            timeTimer.Start();
             SessionManager sessionManager = new SessionManager();
             DataTable activeSession = sessionManager.GetActiveSession();
             LoadScannedStudents();
@@ -58,7 +58,7 @@ namespace Attendo.Screens
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sounds", filename);
                 using (SoundPlayer player = new SoundPlayer(path))
                 {
-                    player.Play(); // or player.PlaySync() if you want it to block
+                    player.Play(); 
                 }
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace Attendo.Screens
                     dgvAttendanceLog.DataSource = table; // your DataGridView name
                 }
 
-                dgvAttendanceLog.Columns["Scan Time"].DefaultCellStyle.Format = "MMM dd, yyyy hh:mm tt";
+                dgvAttendanceLog.Columns["Scan Time"].DefaultCellStyle.Format = "MMM dd, yyyy hh:mm:ss tt";
                 dgvAttendanceLog.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvAttendanceLog.DefaultCellStyle.SelectionBackColor = dgvAttendanceLog.DefaultCellStyle.BackColor;
                 dgvAttendanceLog.DefaultCellStyle.SelectionForeColor = dgvAttendanceLog.DefaultCellStyle.ForeColor;
@@ -453,6 +453,9 @@ namespace Attendo.Screens
 
         }
 
-
+        private void timeTimer_Tick(object sender, EventArgs e)
+        {
+            lbldateTime.Text = "Today is " + DateTime.Now.ToString("dddd, MMMM dd, yyyy hh:mm:ss tt");
+        }
     }
 }
