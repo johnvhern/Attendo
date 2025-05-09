@@ -116,6 +116,7 @@ namespace Attendo.Screens
                 string[] parts = scannedData.Split('|');
                 if (parts.Length != 3)
                 {
+                    PlaySound("error.wav");
                     MessageBox.Show("Invalid QR format.");
                     return;
                 }

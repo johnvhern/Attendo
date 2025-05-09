@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtScanInput = new System.Windows.Forms.TextBox();
+            this.btnResetInput = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -47,13 +48,12 @@
             this.lblstudentName = new System.Windows.Forms.Label();
             this.lblstudentNumber = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.flowRecentScans = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.picID = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.scannTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnResetInput = new System.Windows.Forms.Button();
-            this.flowRecentScans = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -124,6 +124,21 @@
             this.txtScanInput.TextChanged += new System.EventHandler(this.txtScanInput_TextChanged);
             this.txtScanInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtScanInput_KeyPress);
             // 
+            // btnResetInput
+            // 
+            this.btnResetInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
+            this.btnResetInput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnResetInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetInput.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetInput.ForeColor = System.Drawing.Color.White;
+            this.btnResetInput.Location = new System.Drawing.Point(1521, 43);
+            this.btnResetInput.Name = "btnResetInput";
+            this.btnResetInput.Size = new System.Drawing.Size(106, 35);
+            this.btnResetInput.TabIndex = 11;
+            this.btnResetInput.Text = "Reset Input";
+            this.btnResetInput.UseVisualStyleBackColor = false;
+            this.btnResetInput.Click += new System.EventHandler(this.btnResetInput_Click);
+            // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -169,23 +184,23 @@
             this.dgvAttendanceLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAttendanceLog.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvAttendanceLog.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAttendanceLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAttendanceLog.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAttendanceLog.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAttendanceLog.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAttendanceLog.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAttendanceLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAttendanceLog.Location = new System.Drawing.Point(3, 351);
             this.dgvAttendanceLog.MultiSelect = false;
@@ -289,6 +304,17 @@
             this.panel2.Size = new System.Drawing.Size(396, 997);
             this.panel2.TabIndex = 12;
             // 
+            // flowRecentScans
+            // 
+            this.flowRecentScans.AutoScroll = true;
+            this.flowRecentScans.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowRecentScans.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowRecentScans.Location = new System.Drawing.Point(0, 0);
+            this.flowRecentScans.Name = "flowRecentScans";
+            this.flowRecentScans.Size = new System.Drawing.Size(396, 997);
+            this.flowRecentScans.TabIndex = 0;
+            this.flowRecentScans.WrapContents = false;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tableLayoutPanel2);
@@ -341,32 +367,6 @@
             // 
             this.scannTimer.Interval = 300;
             this.scannTimer.Tick += new System.EventHandler(this.scannTimer_Tick);
-            // 
-            // btnResetInput
-            // 
-            this.btnResetInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
-            this.btnResetInput.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnResetInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetInput.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetInput.ForeColor = System.Drawing.Color.White;
-            this.btnResetInput.Location = new System.Drawing.Point(1521, 43);
-            this.btnResetInput.Name = "btnResetInput";
-            this.btnResetInput.Size = new System.Drawing.Size(106, 35);
-            this.btnResetInput.TabIndex = 11;
-            this.btnResetInput.Text = "Reset Input";
-            this.btnResetInput.UseVisualStyleBackColor = false;
-            this.btnResetInput.Click += new System.EventHandler(this.btnResetInput_Click);
-            // 
-            // flowRecentScans
-            // 
-            this.flowRecentScans.AutoScroll = true;
-            this.flowRecentScans.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowRecentScans.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowRecentScans.Location = new System.Drawing.Point(0, 0);
-            this.flowRecentScans.Name = "flowRecentScans";
-            this.flowRecentScans.Size = new System.Drawing.Size(396, 997);
-            this.flowRecentScans.TabIndex = 0;
-            this.flowRecentScans.WrapContents = false;
             // 
             // Dashboard
             // 

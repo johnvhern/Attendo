@@ -34,6 +34,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPrintSelectedID = new System.Windows.Forms.Button();
             this.btnGenerateAllQR = new System.Windows.Forms.Button();
             this.btnSelectedQR = new System.Windows.Forms.Button();
             this.txtSearchBox = new System.Windows.Forms.TextBox();
@@ -75,6 +76,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnPrintSelectedID);
             this.panel2.Controls.Add(this.btnGenerateAllQR);
             this.panel2.Controls.Add(this.btnSelectedQR);
             this.panel2.Controls.Add(this.txtSearchBox);
@@ -89,6 +91,22 @@
             this.panel2.Size = new System.Drawing.Size(1920, 210);
             this.panel2.TabIndex = 9;
             // 
+            // btnPrintSelectedID
+            // 
+            this.btnPrintSelectedID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
+            this.btnPrintSelectedID.FlatAppearance.BorderSize = 0;
+            this.btnPrintSelectedID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintSelectedID.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintSelectedID.ForeColor = System.Drawing.Color.White;
+            this.btnPrintSelectedID.Location = new System.Drawing.Point(339, 156);
+            this.btnPrintSelectedID.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrintSelectedID.Name = "btnPrintSelectedID";
+            this.btnPrintSelectedID.Size = new System.Drawing.Size(158, 40);
+            this.btnPrintSelectedID.TabIndex = 17;
+            this.btnPrintSelectedID.Text = "Print ID (Selected)";
+            this.btnPrintSelectedID.UseVisualStyleBackColor = false;
+            this.btnPrintSelectedID.Click += new System.EventHandler(this.btnPrintSelectedID_Click);
+            // 
             // btnGenerateAllQR
             // 
             this.btnGenerateAllQR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(17)))), ((int)(((byte)(28)))));
@@ -96,7 +114,7 @@
             this.btnGenerateAllQR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerateAllQR.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerateAllQR.ForeColor = System.Drawing.Color.White;
-            this.btnGenerateAllQR.Location = new System.Drawing.Point(182, 156);
+            this.btnGenerateAllQR.Location = new System.Drawing.Point(177, 156);
             this.btnGenerateAllQR.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenerateAllQR.Name = "btnGenerateAllQR";
             this.btnGenerateAllQR.Size = new System.Drawing.Size(158, 40);
@@ -244,5 +262,6 @@
         private System.Windows.Forms.DataGridView dgvStudents;
         private System.Windows.Forms.Button btnGenerateAllQR;
         private System.Windows.Forms.Button btnSelectedQR;
+        private System.Windows.Forms.Button btnPrintSelectedID;
     }
 }

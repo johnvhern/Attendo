@@ -58,9 +58,14 @@ namespace Attendo.Screens
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(content, QRCodeGenerator.ECCLevel.Q);
-
             QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+            // Generate QR code with large pixel-per-module value
+            Bitmap qrCodeImage = qrCode.GetGraphic(30);
+
+            // Set high resolution for printing
+            qrCodeImage.SetResolution(300, 300);
+
             return qrCodeImage;
         }
 

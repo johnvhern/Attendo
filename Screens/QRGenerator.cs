@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace Attendo.Screens
     public partial class QRGenerator : Form
     {
         private string dbConnection = "Data Source=localhost\\sqlexpress;Initial Catalog=Attendo;Integrated Security=True;";
+        private PrintDocument printDocument;
         public QRGenerator()
         {
             InitializeComponent();
@@ -87,12 +89,13 @@ namespace Attendo.Screens
                 using (var qrGenerator = new QRCodeGenerator())
                 using (var qrData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q))
                 using (var qrCode = new QRCode(qrData))
-                using (var qrImage = qrCode.GetGraphic(20))
+                using (var qrImage = qrCode.GetGraphic(30))
                 {
                     if (File.Exists(filePath))
                     {
                         File.Delete(filePath); // or use overwrite-safe logic
                     }
+                    qrImage.SetResolution(300, 300);
                     qrImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
 
                 }
@@ -141,5 +144,28 @@ namespace Attendo.Screens
         {
             LoadStudents();
         }
+
+        private void btnPrintSelectedID_Click(object sender, EventArgs e)
+        {
+            if (dgvStudents.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select at least one student.");
+                return;
+            }
+
+            var students = new List<(string ID, string Name, string Course)>();
+
+            foreach (DataGridViewRow row in dgvStudents.SelectedRows)
+            {
+                string studentID = row.Cells["student_id"].Value.ToString();
+                string name = row.Cells["student_name"].Value.ToString();
+                string course = row.Cells["course"].Value.ToString();
+                students.Add((studentID, name, course));
+            }
+
+            Preview previewForm = new Preview(students);
+            previewForm.ShowDialog();
+        }
+
     }
 }

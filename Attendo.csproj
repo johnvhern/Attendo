@@ -102,9 +102,6 @@
     <Reference Include="itext.svg, Version=9.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\itext.9.1.0\lib\net461\itext.svg.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
-    </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
     </Reference>
@@ -209,6 +206,12 @@
     <Compile Include="Models\SidePanel.Designer.cs">
       <DependentUpon>SidePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\BatchIDPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\BatchIDPreviewForm.Designer.cs">
+      <DependentUpon>BatchIDPreviewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +266,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Screens\BatchIDPreviewForm.resx">
+      <DependentUpon>BatchIDPreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>

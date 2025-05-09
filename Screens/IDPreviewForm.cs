@@ -71,10 +71,37 @@ namespace Attendo.Screens
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    idBitmap.Save(sfd.FileName);
+                    // Target print size at 300 DPI
+                    float widthInInches = 2.5f;
+                    float heightInInches = 4.0f;
+                    int dpi = 300;
+
+                    int targetWidth = (int)(widthInInches * dpi);   // 750 pixels
+                    int targetHeight = (int)(heightInInches * dpi); // 1200 pixels
+
+                    using (Bitmap resized = new Bitmap(targetWidth, targetHeight))
+                    {
+                        resized.SetResolution(dpi, dpi); // Embed high DPI metadata
+
+                        using (Graphics g = Graphics.FromImage(resized))
+                        {
+                            g.Clear(Color.White);
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                            g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+
+                            // Draw original image resized to fit target while keeping aspect ratio
+                            g.DrawImage(idBitmap, 0, 0, targetWidth, targetHeight);
+                        }
+
+                        resized.Save(sfd.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+
                     MessageBox.Show("Image saved.");
                 }
             }
+
         }
 
         private void SaveAsPDF()
@@ -93,12 +120,16 @@ namespace Attendo.Screens
                             idBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                             var imageData = ImageDataFactory.Create(ms.ToArray());
                             var pdfImg = new iText.Layout.Element.Image(imageData);
+
+                            pdfImg.ScaleToFit(288, 180);
+
                             doc.Add(pdfImg);
                         }
                     }
                     MessageBox.Show("PDF saved.");
                 }
             }
+
         }
 
         private void PrintID()
