@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using QRCoder;
 using System.Windows.Controls;
+using Image = System.Drawing.Image;
 
 
 namespace Attendo.Screens
@@ -151,16 +152,39 @@ namespace Attendo.Screens
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog dialog = new OpenFileDialog())
+            try
             {
-                dialog.Title = "Select Picture";
-                dialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-
-                if (dialog.ShowDialog() == DialogResult.OK)
+                using (OpenFileDialog dialog = new OpenFileDialog())
                 {
-                    selectedImagePath = dialog.FileName;
-                    picID.Image = System.Drawing.Image.FromFile(dialog.FileName);
+                    dialog.Title = "Select Picture";
+                    dialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        selectedImagePath = dialog.FileName;
+
+                        // Dispose previous image to prevent memory leaks
+                        if (picID.Image != null)
+                        {
+                            picID.Image.Dispose();
+                            picID.Image = null;
+                        }
+
+                        // Load image safely from file without locking
+                        using (var stream = new MemoryStream(File.ReadAllBytes(selectedImagePath)))
+                        {
+                            using (var tempImage = Image.FromStream(stream))
+                            {
+                                // Clone the image to detach it from the stream
+                                picID.Image = new Bitmap(tempImage);
+                            }
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 

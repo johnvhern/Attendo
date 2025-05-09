@@ -348,7 +348,7 @@ namespace Attendo.Screens
             {
                 conn.Open();
                 string query = @"
-            SELECT TOP 3 
+            SELECT TOP 6 
                 s.student_id, s.student_name, s.course, s.photopath,
                 a.scan_time, a.status
             FROM tblAttendance a
