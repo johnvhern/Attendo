@@ -14,6 +14,7 @@ namespace Attendo.Screens
     public partial class Sessions : Form
     {
         private string dbConnection = "Data Source=localhost\\sqlexpress;Initial Catalog=Attendo;Integrated Security=True;";
+        private int selectedSessionName;
         public Sessions()
         {
             InitializeComponent();
@@ -155,6 +156,7 @@ namespace Attendo.Screens
         {
             if (dgvSessions.SelectedRows.Count > 0)
             {
+                selectedSessionName = Convert.ToInt32(dgvSessions.SelectedRows[0].Cells["sessionid"].Value);
                 txtSessionName.Text = dgvSessions.SelectedRows[0].Cells["sessionname"].Value.ToString();
                 startTimeDT.Value = Convert.ToDateTime(dgvSessions.SelectedRows[0].Cells["starttime"].Value);
                 cutoffDT.Value = Convert.ToDateTime(dgvSessions.SelectedRows[0].Cells["cutofftime"].Value);
@@ -186,6 +188,26 @@ namespace Attendo.Screens
             string filterText = txtSearchBox.Text.Trim().Replace("'", "''"); // avoid SQL issues
             (dgvSessions.DataSource as DataTable).DefaultView.RowFilter =
                 $"sessionname LIKE '%{filterText}%'";
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (selectedSessionName > 0)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this session?", "Delete Session", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    SessionManager sessionManager = new SessionManager();
+                    sessionManager.DeleteSession(selectedSessionName);
+                    MessageBox.Show("Session deleted successfully.");
+                    LoadSessions();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a session to delete.", "No Session Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

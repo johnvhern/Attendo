@@ -226,6 +226,12 @@
     <Compile Include="Screens\IDPreviewForm.Designer.cs">
       <DependentUpon>IDPreviewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\QRGenerator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\IDPreviewForm.resx">
       <DependentUpon>IDPreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\QRGenerator.resx">
       <DependentUpon>QRGenerator.cs</DependentUpon>

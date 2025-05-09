@@ -101,5 +101,19 @@ namespace Attendo
                 }
             }
         }
+
+        public void DeleteSession(int sessionId)
+        {
+            using (SqlConnection conn = new SqlConnection(dbConnection))
+            {
+                conn.Open();
+                string query = "DELETE FROM tblSessions WHERE sessionid = @sessionId";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@sessionId", sessionId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
