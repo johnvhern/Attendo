@@ -61,5 +61,20 @@ namespace Attendo.Models
             mainForm.OpenForm(new Screens.QRGenerator());
             ColorActiveButton((Button)sender);
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                MainScreen mainScreen = (MainScreen)this.ParentForm;
+                mainScreen.Hide();
+                Screens.Login loginForm = new Screens.Login();
+                loginForm.Show();
+
+                loginForm.FormClosed += (s, args) => mainScreen.Close(); // Close main screen when login form is closed
+            }
+        }
     }
 }
