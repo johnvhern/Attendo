@@ -134,10 +134,20 @@ namespace Attendo.Screens
                 using (SqlConnection conn = new SqlConnection(dbConnection)){
 
                     conn.Open();
-                    string loadReport = "SELECT s.course, s.student_id, s.student_name, a.scan_time, a.status FROM tblStudents s " +
-                    "JOIN tblAttendance a ON s.id = a.student_id " +
-                    "JOIN tblSessions se ON a.session_id = se.sessionid " +
-                    "WHERE se.sessionname = @sessionname AND s.course = @course";
+                    string loadReport = @"
+                                        SELECT 
+                                            s.course,
+                                            s.student_id,
+                                            s.student_name,
+                                            a.scan_time,
+                                            ISNULL(a.status, 'ABSENT') AS status
+                                        FROM tblStudents s
+                                        LEFT JOIN tblAttendance a 
+                                            ON s.id = a.student_id AND a.session_id = (
+                                                SELECT sessionid FROM tblSessions WHERE sessionname = @sessionname
+                                            )
+                                        WHERE s.course = @course";
+
 
                     using (SqlCommand cmd = new SqlCommand(loadReport, conn)){
 
@@ -174,12 +184,17 @@ namespace Attendo.Screens
                 if (status.Equals("LATE", StringComparison.OrdinalIgnoreCase))
                 {
                     e.CellStyle.BackColor = Color.Red;
-                    e.CellStyle.ForeColor = Color.White;
+                    e.CellStyle.ForeColor = Color.Black;
                 }
-                else if (status.Equals("IN", StringComparison.OrdinalIgnoreCase) || status.Equals("ABSENT", StringComparison.OrdinalIgnoreCase))
+                else if (status.Equals("IN", StringComparison.OrdinalIgnoreCase))
                 {
                     e.CellStyle.BackColor = Color.Green;
-                    e.CellStyle.ForeColor = Color.White;
+                    e.CellStyle.ForeColor = Color.Black;
+                }
+                else if (status.Equals("ABSENT", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.CellStyle.BackColor = Color.Yellow;
+                    e.CellStyle.ForeColor = Color.Black;
                 }
             }
         }
@@ -353,16 +368,21 @@ namespace Attendo.Screens
                         if (status == "IN")
                         {
                             backgroundBrush = Brushes.Green;
-                            textBrush = Brushes.White;
+                            textBrush = Brushes.Black;
                         }
-                        else if (status == "LATE" || status == "ABSENT")
+                        else if (status == "LATE")
                         {
                             backgroundBrush = Brushes.Red;
-                            textBrush = Brushes.White;
+                            textBrush = Brushes.Black;
+                        }
+                        else if (status == "ABSENT")
+                        {
+                            backgroundBrush = Brushes.Yellow;
+                            textBrush = Brushes.Black;
                         }
 
-                        // Fill background and draw text
-                        e.Graphics.FillRectangle(backgroundBrush, cellRect);
+                            // Fill background and draw text
+                            e.Graphics.FillRectangle(backgroundBrush, cellRect);
                         e.Graphics.DrawRectangle(Pens.Black, cellRect);
                         e.Graphics.DrawString(value, printFont, textBrush, cellRect);
                     }

@@ -142,10 +142,15 @@ namespace Attendo.Screens
                                             cell.SetBackgroundColor(ColorConstants.GREEN)
                                                 .SetFontColor(ColorConstants.BLACK);
                                         }
-                                        else if (text == "LATE" || text == "ABSENT")
+                                        else if (text == "LATE")
                                         {
                                             cell.SetBackgroundColor(ColorConstants.RED)
                                                 .SetFontColor(ColorConstants.WHITE);
+                                        }
+                                        else if (text == "ABSENT")
+                                        {
+                                            cell.SetBackgroundColor(ColorConstants.YELLOW)
+                                                .SetFontColor(ColorConstants.BLACK);
                                         }
                                     }
                                     table.SetFontSize(9);

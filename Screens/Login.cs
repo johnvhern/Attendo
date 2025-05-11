@@ -15,11 +15,12 @@ namespace Attendo.Screens
         public Login()
         {
             InitializeComponent();
+            txtPassword.UseSystemPasswordChar = true;
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void showPassCheckBox_CheckedChanged_1(object sender, EventArgs e)
         {
-
+            txtPassword.UseSystemPasswordChar = !showPassCheckBox.Checked;
         }
     }
 }

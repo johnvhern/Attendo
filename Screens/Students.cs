@@ -95,12 +95,6 @@ namespace Attendo.Screens
                     return;
                 }
 
-                if (picID.Image.Equals(null))
-                {
-                    MessageBox.Show("Please upload a photo.", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
                 string course = txtCourse.Text.Trim();
                 string studentID = txtStudentID.Text.Trim();
                 string name = txtName.Text.Trim();
@@ -109,7 +103,17 @@ namespace Attendo.Screens
                 string photoDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Photos");
                 if (!Directory.Exists(photoDir)) Directory.CreateDirectory(photoDir);
 
+                // Set default image path if no image is selected
+                string defaultImagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "default.png");
+
+                // Check if user selected an image; if not, use default
+                if (string.IsNullOrEmpty(selectedImagePath) || !File.Exists(selectedImagePath))
+                {
+                    selectedImagePath = defaultImagePath;
+                }
+
                 string newPhotoPath = Path.Combine(photoDir, studentID + Path.GetExtension(selectedImagePath));
+
 
                 File.Copy(selectedImagePath, newPhotoPath, true);
 
