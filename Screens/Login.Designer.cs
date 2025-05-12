@@ -112,7 +112,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(338, 28);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Attendo";
+            this.label1.Text = "GCT";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
