@@ -60,21 +60,21 @@ The **GCT QR Attendance System** is a secure, offline desktop tool for tracking 
 
 ### Steps
 
-1. **Clone the repository**
+1. Clone the repository**
    ```bash
    git clone https://github.com/johnvhern/Attendo.git
-2. **Set up the database
+2. Set up the database
    - Create a new DB in SQL Server (e.g., GCTAttendance)
    - Run the provided schema (see Database/) to create tables:
      tblUsers, tblStudents, tblSessions, tblAttendance
-3. **Configure App.config
+3. Configure App.config
    ```bash
    <connectionStrings>
    <add name="GCTAttendance"
        connectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=GCTAttendance;Integrated Security=True"
        providerName="System.Data.SqlClient" />
    </connectionStrings>
-4. **Run the Console Tool
+4. Run the Console Tool
    - Register your first user (automatically becomes Master)
    - Path: /ConsoleApp/UserManager.exe
    - Launch the WinForms Application
